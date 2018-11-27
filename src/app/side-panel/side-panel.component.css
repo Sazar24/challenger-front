@@ -1,0 +1,7 @@
+.side-panel{
+    /* position: relative; */
+    background-color: red; 
+    /* width: 20%; */
+    width: 200px;
+    height:400px
+}
