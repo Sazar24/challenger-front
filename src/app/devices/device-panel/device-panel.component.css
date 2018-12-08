@@ -1,0 +1,9 @@
+.device-panel {
+    /* background-color: blue; */
+    /* float: left; */
+    border: 1px blue solid;
+    height: 400px;
+    width: 400px;
+    margin: 5px;
+    padding: 5px; 
+}
