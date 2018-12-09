@@ -1,12 +1,16 @@
+import { timestampEventData } from "./timestamp.model";
+
 export class hangingPeriod {
-    start: {
-        timestamp: Date;
-        state: boolean
-    }
-    stop: {
-        timestamp: Date;
-        state: boolean
-    };
+    start: timestampEventData;
+    stop: timestampEventData;
+    // start: {
+    //     timestamp: Date;
+    //     state: boolean
+    // }
+    // stop: {
+    //     timestamp: Date;
+    //     state: boolean
+    // };
 
 
 

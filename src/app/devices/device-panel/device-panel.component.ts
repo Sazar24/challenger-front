@@ -26,7 +26,8 @@ export class DevicePanelComponent implements OnInit {
     this.device = this.devicesManagerService.devices[this.deviceIndex];
     this.subscribeToStateChanges();
 
-    this.storedHangingPeriods.push(new hangingPeriod());  // TODO: refactor (this is temp solution)
+    console.log(this.storedHangingPeriods.length)
+    // this.storedHangingPeriods.push(new hangingPeriod());  // TODO: refactor (this is temp solution)
   }
 
   private subscribeToStateChanges(): void {

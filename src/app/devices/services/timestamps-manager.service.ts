@@ -8,35 +8,42 @@ import { Injectable } from '@angular/core';
 export class TimestampsManagingService {
 
   constructor() { }
+  
+  checkIntegrity():boolean{
 
+    return;
+  }
   public addTimeStamp(newTimestamp: timestampEventData, storedPeriods: hangingPeriod[]): void {
 
     const storedPeriodsLastItemIndex: number = storedPeriods.length - 1;
-    if (!storedPeriodsLastItemIndex) {
+    if (storedPeriodsLastItemIndex < 0) {
       this.addStartTimestamp(newTimestamp, storedPeriods);
       return;
     }
 
     const lastItem: hangingPeriod = storedPeriods[storedPeriodsLastItemIndex];
+    if (lastItem === undefined) throw new Error(`lastItem -in storedPeriods- is undefined! It suppose to be handled alredy!\nindex is == ${storedPeriodsLastItemIndex}`);
 
     if (lastItem.start === undefined) {
       this.addStartTimestamp(newTimestamp, storedPeriods);
+      return;
     }
     else {
       if (lastItem.stop === undefined) {
         this.addStopTimestamp(newTimestamp, storedPeriods);
+        return;
       }
       else {
         if (lastItem.start !== undefined && lastItem.stop !== undefined) {
           this.addStartTimestamp(newTimestamp, storedPeriods);
+          return;
         }
         else console.warn("unpredicted (and impossible) case");
       }
-
-      return;
     }
   }
 
+  // private addInitialTimestamp(newTimestamp: timestampEventData, storedPeriods: hangingPeriod[]): void { }
 
   private addStartTimestamp(newTimestamp: timestampEventData, storedPeriods: hangingPeriod[]): void {
     if (newTimestamp.state === false) return;

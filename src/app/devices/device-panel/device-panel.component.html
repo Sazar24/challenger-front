@@ -7,20 +7,20 @@
     <p>
       <button class="btn btn-outline-secondary" (click)="stopListeningForStateChanges()">unsubcribe</button>
     </p>
-    <div *ngIf='storedHangingPeriods'>
+
+    <div *ngIf="storedHangingPeriods.length">
       those are timestamps:
       <ul *ngFor="let period of storedHangingPeriods">
         <li>
-          <span *ngIf="period.start">
-            {{period.start.state}}
+          <span *ngIf="period.start.state">
+            {{period.start.state}} ({{period.start.timestamp}})
           </span>
           <span *ngIf="period.stop != undefined">
-            -- {{period.stop.state}}
+            -- {{period.stop.state}} ({{period.stop.timestamp}})
           </span>
-        </li>
-
-      </ul>
-
+        </li> 
+      </ul> 
     </div>
+
   </div>
 </div>

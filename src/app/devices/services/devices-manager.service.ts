@@ -8,10 +8,10 @@ import { device } from '../models/device.model';
 export class DevicesManagerService {
 
   public devices: device[] = [
-    new device("foo", false, 500),
+    new device("foo", false, 1500),
     new device("bar", true, 1000),
     new device("lorem", true, 1500),
-    new device("ipsum", true, 2500),
+    // new device("ipsum", true, 2500),
   ];
 
   constructor() { }
