@@ -3,9 +3,24 @@
     <p> name: {{ device.name }} </p>
     <p> toggleOn-status: {{ device.toggledOn }} </p>
     <p> this device index is {{deviceIndex}} </p>
-    <p></p>
+    <p> changesCounter: {{changesCounter}} </p>
     <p>
-      <!-- <button class="btn btn-outline-secondary" (click)="stopTimer()">unsubcribe</button> -->
+      <button class="btn btn-outline-secondary" (click)="stopListeningForStateChanges()">unsubcribe</button>
     </p>
+    <div *ngIf='storedHangingPeriods'>
+      those are timestamps:
+      <ul *ngFor="let period of storedHangingPeriods">
+        <li>
+          <span *ngIf="period.start">
+            {{period.start.state}}
+          </span>
+          <span *ngIf="period.stop != undefined">
+            -- {{period.stop.state}}
+          </span>
+        </li>
+
+      </ul>
+
+    </div>
   </div>
 </div>

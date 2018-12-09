@@ -1,4 +1,4 @@
-import { device } from './../model/device.model';
+import { device } from '../models/device.model';
 import { Component, OnInit } from '@angular/core';
 import { DevicesManagerService } from '../services/devices-manager.service';
 
