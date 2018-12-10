@@ -29,10 +29,10 @@
       <ul *ngFor="let period of storedHangingPeriods">
         <li>
           <span *ngIf="period.start.state">
-            {{period.start.state}} ({{period.start.timestamp}})
+            {{period.start.state}} ({{period.start.timestamp | date: "HH:mm:ss"}})
           </span>
           <span *ngIf="period.stop != undefined">
-            -- {{period.stop.state}} ({{period.stop.timestamp}})
+            -- {{period.stop.state}} ({{period.stop.timestamp | date: "HH:mm:ss"}})
           </span>
         </li>
       </ul>
