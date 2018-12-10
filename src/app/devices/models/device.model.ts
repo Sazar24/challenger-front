@@ -12,22 +12,20 @@ export class device {
         this.fakeSocketObservable = new Observable((observer) => {
             this.fakeSocketTimeoutActions(observer, timePeriod);
         });
-        console.log(`${this.name}: created!`)
     }
 
 
     private fakeSocketTimeoutActions(observer, timePeriod: number): void {
         const interval = setInterval(() => {
             this.toggledOn = !this.toggledOn;
-            // const result = new timestampEventData(this.toggledOn, new Date());
-            const result = new timestampEventData(this.toggledOn, this.dateToString());
-            console.log(`sending: ${JSON.stringify(result)}`);
+            const result = new timestampEventData(this.toggledOn, new Date());
+            // const result = new timestampEventData(this.toggledOn, this.dateToString());
             observer.next(result); 
         }, timePeriod);
 
         setTimeout(() => {
             clearInterval(interval);
-        }, timePeriod * 8);
+        }, timePeriod * 18);
     }
 
     private dateToString(): string {

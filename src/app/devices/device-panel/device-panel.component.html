@@ -1,12 +1,28 @@
 <div *ngIf="deviceIndex != undefined">
   <div class="device-panel">
-    <p> name: {{ device.name }} </p>
-    <p> toggleOn-status: {{ device.toggledOn }} </p>
-    <p> this device index is {{deviceIndex}} </p>
-    <p> changesCounter: {{changesCounter}} </p>
-    <p>
-      <button class="btn btn-outline-secondary" (click)="stopListeningForStateChanges()">unsubcribe</button>
-    </p>
+    <div class="device-panel-header">
+      <p>
+        name: {{ device.name }}
+      </p>
+      <p>
+        index: {{deviceIndex}}
+      </p>
+    </div>
+
+    <div>
+      <p> toggleOn-status: {{ device.toggledOn }} </p>
+      <p>
+        <time-counter-displayer [deviceIndex]="deviceIndex"></time-counter-displayer>
+        {{deviceIndex}}
+      </p>
+    </div>
+
+    <div class="one-line">
+      <p> changesCounter: {{changesCounter}} </p>
+      <p>
+        <button class="btn btn-outline-secondary" (click)="stopListeningForStateChanges()">unsubcribe</button>
+      </p>
+    </div>
 
     <div *ngIf="storedHangingPeriods.length">
       those are timestamps:
@@ -18,8 +34,8 @@
           <span *ngIf="period.stop != undefined">
             -- {{period.stop.state}} ({{period.stop.timestamp}})
           </span>
-        </li> 
-      </ul> 
+        </li>
+      </ul>
     </div>
 
   </div>

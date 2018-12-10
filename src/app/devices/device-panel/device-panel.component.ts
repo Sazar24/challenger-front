@@ -19,6 +19,7 @@ export class DevicePanelComponent implements OnInit {
   private stateChanges$: Subscription;
   private storedHangingPeriods: hangingPeriod[] = [];
   private changesCounter: number = 0;
+  public startingTimeForActiveTimer: Date;
 
   constructor(private devicesManagerService: DevicesManagerService, private timestampsManagingService : TimestampsManagingService) { }
 
@@ -26,7 +27,6 @@ export class DevicePanelComponent implements OnInit {
     this.device = this.devicesManagerService.devices[this.deviceIndex];
     this.subscribeToStateChanges();
 
-    console.log(this.storedHangingPeriods.length)
     // this.storedHangingPeriods.push(new hangingPeriod());  // TODO: refactor (this is temp solution)
   }
 
@@ -35,7 +35,10 @@ export class DevicePanelComponent implements OnInit {
       this.device.toggledOn = timestamp.state;
       this.changesCounter++;
       this.saveTimestampToStore(timestamp);
-      // console.log(`receiving data (${state}) from rxObservable success for ${this.deviceIndex} `);
+
+      if (timestamp.state === true){
+        this.startingTimeForActiveTimer = timestamp.timestamp;
+      }
     },
       (error) => console.log("there was error: " + error),
       () => console.log(`receiving data from rxObservable success for ${this.deviceIndex} `)

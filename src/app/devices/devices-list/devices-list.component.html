@@ -1,9 +1,6 @@
 <div *ngIf="devices.length" class="devices-list-wrapper">
-  device-panel works! there is: {{devices.length}} connected:
-
   <div class="devices-container">
     <div *ngFor="let device of devices ; let i =index">
-      <!-- <device-panel [device]=device></device-panel> -->
       <device-panel [deviceIndex]=i></device-panel>
     </div>
   </div>

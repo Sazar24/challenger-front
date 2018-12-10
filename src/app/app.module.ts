@@ -8,6 +8,7 @@ import { LayoutModule } from '@angular/cdk/layout';
 import { SidePanelComponent } from './side-panel/side-panel.component';
 import { DevicePanelComponent } from './devices/device-panel/device-panel.component';
 import { DevicesListComponent } from './devices/devices-list/devices-list.component';
+import { TimeCounterDisplayerComponent } from './devices/device-panel/time-counter-displayer/time-counter-displayer.component';
 
 @NgModule({
   declarations: [
@@ -15,6 +16,7 @@ import { DevicesListComponent } from './devices/devices-list/devices-list.compon
     SidePanelComponent,
     DevicePanelComponent,
     DevicesListComponent,
+    TimeCounterDisplayerComponent,
   ],
   imports: [
     BrowserModule,

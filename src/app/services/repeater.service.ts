@@ -1,12 +1,12 @@
-import { Injectable } from '@angular/core';
+// import { Injectable } from '@angular/core';
 
-@Injectable({
-  providedIn: 'root'
-})
-export class RepeaterService {
+// @Injectable({
+//   providedIn: 'root'
+// })
+// export class RepeaterService {
 
-  constructor() { }
-  toggleEvery3secs(subscribedVariable: boolean) {
+//   constructor() { }
+//   toggleEvery3secs(subscribedVariable: boolean) {
     
-  }
-}
+//   }
+// }

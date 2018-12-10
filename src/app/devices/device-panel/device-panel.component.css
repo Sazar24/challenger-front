@@ -1,9 +1,21 @@
 .device-panel {
-    /* background-color: blue; */
-    /* float: left; */
-    border: 1px blue solid;
-    height: 400px;
-    width: 400px;
+    border: 3px lightslategray ridge;
+    background-color: whitesmoke;
+    min-height: 400px;
+    min-width: 400px;
     margin: 5px;
     padding: 5px; 
+    display: inline-block;
+}
+
+.device-panel-header{
+    display: inline-flex; 
+    width: 100%; 
+    justify-content: space-between;
+}
+
+.one-line{ 
+    display: inline-flex; 
+    width: 100%; 
+    justify-content: space-evenly;
 }

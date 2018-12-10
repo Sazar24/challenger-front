@@ -8,8 +8,8 @@ import { Injectable } from '@angular/core';
 export class TimestampsManagingService {
 
   constructor() { }
-  
-  checkIntegrity():boolean{
+
+  checkIntegrity(): boolean {
 
     return;
   }
@@ -68,4 +68,6 @@ export class TimestampsManagingService {
       timestamp: newTimestamp.timestamp
     }
   }
+
+  // private setTimestampForActiveTimer(timePoint: Date): void { }
 }
