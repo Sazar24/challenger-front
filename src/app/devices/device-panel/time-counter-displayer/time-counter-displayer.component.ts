@@ -1,9 +1,9 @@
-import { device } from './../../models/device.model';
+import { Device } from './../../models/device.model';
 import { Subscription } from 'rxjs';
 import { timestampEventData } from './../../models/timestamp.model';
 import { Component, OnInit, Input } from '@angular/core';
 import { TimerService } from '../../../services/timer.service';
-import { DevicesManagerService } from '../../services/devices-manager.service';
+import { DevicesStoreService } from '../../services/devices-store.service';
 
 @Component({
   selector: 'time-counter-displayer',
@@ -19,7 +19,7 @@ export class TimeCounterDisplayerComponent implements OnInit {
   private timeDiffInSecs: number;
   private timeDiffAsString: string;
 
-  constructor(private timerService: TimerService, private devicesManagerService: DevicesManagerService) { }
+  constructor(private timerService: TimerService, private devicesManagerService: DevicesStoreService) { }
 
   ngOnInit() {
     this.startTimeCounting();
@@ -37,10 +37,11 @@ export class TimeCounterDisplayerComponent implements OnInit {
       100);
   }
 
-  private calculateTimeDiff(deviceIndex: number, devices: device[]) {
+  private calculateTimeDiff(deviceIndex: number, devices: Device[]) { // TODO
     // todo: tutaj tylko czytać, bez subskrybcji - to i tak jest na timeout`cie.
+
     // const subscription: Subscription = this.devicesManagerService.devices[this.deviceIndex].fakeSocketObservable.subscribe((timestamp: timestampEventData) => {
-    const device: device = devices[deviceIndex];
+    const device: Device = devices[deviceIndex];
     // const device.
     // const lastItemIndex
     // if (timestamp.state === true)

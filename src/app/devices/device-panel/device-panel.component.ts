@@ -1,10 +1,12 @@
 import { TimestampsManagingService } from './../services/timestamps-manager.service';
 import { hangingPeriod } from './../models/hangPeriod.model';
 import { timestampEventData } from './../models/timestamp.model';
-import { device } from '../models/device.model';
-import { DevicesManagerService } from '../services/devices-manager.service';
+import { Device } from '../models/device.model';
+import { DevicesStoreService } from '../services/devices-store.service';
 import { Component, OnInit, Input } from '@angular/core';
 import { Subscription } from 'rxjs';
+import { SocketService } from '../../services/socket-service.service';
+import { HttpClient } from '@angular/common/http';
 
 @Component({
   selector: 'device-panel',
@@ -13,31 +15,59 @@ import { Subscription } from 'rxjs';
 })
 export class DevicePanelComponent implements OnInit {
 
-  private device: device;
   @Input() deviceIndex: number;
-  private timerRunning;
+  private device: Device;
+  // private timerRunning;
   private stateChanges$: Subscription;
   private storedHangingPeriods: hangingPeriod[] = [];
   private changesCounter: number = 0;
   public startingTimeForActiveTimer: Date;
+  private ioConnection: any;
 
-  constructor(private devicesManagerService: DevicesManagerService, private timestampsManagingService : TimestampsManagingService) { }
+  constructor(
+    private devicesStore: DevicesStoreService,
+    private timestampsManagingService: TimestampsManagingService,
+    private socketService: SocketService,
+    private http: HttpClient,
+  ) { }
 
   ngOnInit() {
-    this.device = this.devicesManagerService.devices[this.deviceIndex];
+    // this.device = this.devicesStore.devices[this.deviceIndex];
+    this.device = this.devicesStore.getDeviceByIndex(this.deviceIndex);
     this.subscribeToStateChanges();
+
+
+
+    /*    this.pingMonkeys();
+       this.socketService.initSocket();
+       this.ioConnection = this.socketService.onMessage()
+         .subscribe(
+           (message: string) => {
+             console.log("wiadomość received: " + JSON.stringify(message));
+           }); */
+
 
     // this.storedHangingPeriods.push(new hangingPeriod());  // TODO: refactor (this is temp solution)
   }
 
-  private subscribeToStateChanges(): void {
-    this.stateChanges$ = this.device.fakeSocketObservable.subscribe((timestamp: timestampEventData) => {
-      this.device.toggledOn = timestamp.state;
-      this.changesCounter++;
-      this.saveTimestampToStore(timestamp);
+  /*   pingMonkeys() {
+      const monkeyServerURL = "https://monkey-challenge-server.herokuapp.com/ping";
+      this.http.get(monkeyServerURL).subscribe(
+        (data) => {
+          console.log("ping response: " + data);
+        },
+        (error)=>console.log("error" + error)
+      ) 
+    } */
 
-      if (timestamp.state === true){
-        this.startingTimeForActiveTimer = timestamp.timestamp;
+  private subscribeToStateChanges(): void {
+    this.stateChanges$ = this.device.webSocket.subscribe((newEventPackage: timestampEventData) => {
+      this.device.isOnStatus = newEventPackage.state;
+      this.changesCounter++;
+      this.saveTimestampToStore(newEventPackage);
+
+      if (newEventPackage.state === true) {
+        this.startingTimeForActiveTimer = newEventPackage.timestamp;
       }
     },
       (error) => console.log("there was error: " + error),

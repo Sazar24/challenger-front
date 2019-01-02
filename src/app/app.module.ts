@@ -9,6 +9,8 @@ import { SidePanelComponent } from './side-panel/side-panel.component';
 import { DevicePanelComponent } from './devices/device-panel/device-panel.component';
 import { DevicesListComponent } from './devices/devices-list/devices-list.component';
 import { TimeCounterDisplayerComponent } from './devices/device-panel/time-counter-displayer/time-counter-displayer.component';
+import { HttpClient } from '@angular/common/http';
+import { HttpClientModule } from '@angular/common/http';
 
 @NgModule({
   declarations: [
@@ -26,7 +28,8 @@ import { TimeCounterDisplayerComponent } from './devices/device-panel/time-count
     MatMenuModule,
     MatIconModule,
     MatButtonModule,
-    LayoutModule
+    LayoutModule,
+    HttpClientModule
   ],
   providers: [],
   bootstrap: [AppComponent]

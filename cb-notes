@@ -1,0 +1,24 @@
+Notatki własne. Nie stanowią integralnej części projektu.
+
+model w app/devices/models/device.model.ts
+
+Wszystko zbierać w serwisy. (Komponenty nic nie zmieniają w nich bezpośrednio a tylko wołają metody.)
+
+
+Devices-store.service - Serwis do trzymania danych urządzeń.
+
+MockDataAndActions.service - serwis na czas developmentu.
+- Udaje serwer: 
+    - jest niby websocketem
+    - strzela danymi: {id-device: string, state: boolean} (potem ma być niby jakiś event)
+- określam mu w środku tablicę z np. 3 device`ami.
+- potem losuje jedno z tych device`ów i nim strzela.
+
+
+DataFetcher.service - Serwis na konwertowanie danych z serwera na listę device`ów.
+-Tj.: z mockDataAndActions.service do devices-store.service.
+
+
+dev:  komponent < devicesStore.service < dataFetcher.service < mockDataAndActions.service
+prod: komponent < devicesStore.service < dataFetcher.service < ----server----
+

@@ -9,11 +9,10 @@ export class TimestampsManagingService {
 
   constructor() { }
 
-  // checkIntegrity(): boolean { return; }
-
   public addTimeStamp(newTimestamp: timestampEventData, storedPeriods: hangingPeriod[]): void {
 
     const storedPeriodsLastItemIndex: number = storedPeriods.length - 1;
+
     if (storedPeriodsLastItemIndex < 0) {
       this.addStartTimestamp(newTimestamp, storedPeriods);
       return;

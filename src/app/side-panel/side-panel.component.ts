@@ -9,7 +9,6 @@ export class SidePanelComponent implements OnInit {
 
   constructor() { }
 
-  ngOnInit() {
-  }
+  ngOnInit() { }
 
 }

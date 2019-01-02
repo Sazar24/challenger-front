@@ -1,6 +1,6 @@
-import { device } from '../models/device.model';
+import { Device } from '../models/device.model';
 import { Component, OnInit } from '@angular/core';
-import { DevicesManagerService } from '../services/devices-manager.service';
+import { DevicesStoreService } from '../services/devices-store.service';
 
 @Component({
   selector: 'devices-list',
@@ -9,12 +9,15 @@ import { DevicesManagerService } from '../services/devices-manager.service';
 })
 export class DevicesListComponent implements OnInit {
 
-  public devices : device[];
+  public devices: Device[];
 
-  constructor(private devicesManagerService: DevicesManagerService) {
+  constructor(
+    private devicesStore: DevicesStoreService,
+    // TODO: tutaj jakiś socketService (a ten łączy się z DevicesStoreService)
+  ) {
   }
 
   ngOnInit() {
-    this.devices = this.devicesManagerService.devices;
+    this.devices = this.devicesStore.devices;
   }
 } 
