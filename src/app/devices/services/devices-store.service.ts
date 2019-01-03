@@ -16,7 +16,7 @@ export class DevicesStoreService {
   ];
 
   constructor() {
-    this.mockPeriodicChangeStart();
+    this.mockPeriodicChangeStart(); // TODO: to wynieść do osobnej klasy (tylko mockującej). + wołać tylko gdy jest .env.production==false.
   }
 
   public getDeviceByIndex(index: number): Device {

@@ -13,7 +13,7 @@ export class DevicesListComponent implements OnInit {
 
   constructor(
     private devicesStore: DevicesStoreService,
-    // TODO: tutaj jakiś socketService (a ten łączy się z DevicesStoreService)
+    // TODO: tutaj socketService (a ten łączy się z DevicesStoreService)
   ) {
   }
 
